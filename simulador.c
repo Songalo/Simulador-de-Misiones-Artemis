@@ -20,5 +20,12 @@ void calcular_fase1(NaveArtemis *nave)
     nave->velocidad = nave->velocidad
                     + nave->aceleracion * TIEMPO_SRB;
 
-    nave->tiempo_actual = TIEMPO_SRB;
-}
+    nave->tiempo_actual = TIEMPO_SRB; 
+
+    double aceleracion_en_g = nave->aceleracion / ACEL_GRAV;
+
+    printf("\n--- RESULTADOS DE LA PRIMERA ETAPA ---\n");
+    printf("Tiempo transcurrido: %.2f segundos\n", nave->tiempo_actual);
+    printf("Altitud alcanzada: %.2f metros\n", nave->altitud);
+    printf("Velocidad alcanzada: %.2f m/s\n", nave->velocidad);
+    printf("Aceleracion de la tripulacion: %.2f g\n", aceleracion_en_g);
