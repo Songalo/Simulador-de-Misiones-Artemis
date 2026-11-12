@@ -13,14 +13,28 @@ void calcular_fase1(NaveArtemis *nave)
     nave->velocidad = 0.0;
     nave->aceleracion = ACEL_FASE1;
 
-    nave->altitud = nave->altitud
-                  + nave->velocidad * TIEMPO_SRB
-                  + (nave->aceleracion * TIEMPO_SRB * TIEMPO_SRB) / 2.0;
+    double altitudes[121];
+    double velocidades[121];
 
-    nave->velocidad = nave->velocidad
-                    + nave->aceleracion * TIEMPO_SRB;
+    for (int i = 0; i <= 120; i++) {
+        double tiempo = (double)i;
+
+        altitudes[i] = 0.5 * nave->aceleracion * tiempo * tiempo;
+        velocidades[i] = nave->aceleracion * tiempo;
+    }
+
+    nave->altitud = altitudes[120];
+    nave->velocidad = velocidades[120];
 
     nave->tiempo_actual = TIEMPO_SRB; 
+
+    printf("\n--- EVOLUCION DEL ASCENSO ---\n");
+    printf("Tiempo\tAltitud (m)\tVelocidad (m/s)\n");
+
+    for (int i = 0; i <= 120; i += 10) {
+        printf("%d\t%.2f\t\t%.2f\n",
+           i, altitudes[i], velocidades[i]);
+    }
 
     double aceleracion_en_g = nave->aceleracion / ACEL_GRAV;
 
@@ -29,3 +43,7 @@ void calcular_fase1(NaveArtemis *nave)
     printf("Altitud alcanzada: %.2f metros\n", nave->altitud);
     printf("Velocidad alcanzada: %.2f m/s\n", nave->velocidad);
     printf("Aceleracion de la tripulacion: %.2f g\n", aceleracion_en_g);
+    printf("\nDESPRENDIMIENTO DE LOS SRB\n");
+    printf("Tiempo del evento: %.2f segundos\n", nave->tiempo_actual);
+    printf("La primera etapa ha finalizado.\n");
+}
