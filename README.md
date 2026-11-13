@@ -37,3 +37,7 @@ El proyecto incluye un **Makefile** para automatizar el proceso de compilación 
 
 ## 4. Uso de Inteligencia Artificial
 
+Durante el desarrollo del proyecto, la asistencia de la Inteligencia Artificial fue vital para:
+* Comprender la utilidad de los archivos de cabecera .h y como se utilizan.
+* Conocer la existencia del archivo Makefile, y su correcta configuración. Util para compilar de manera sencilla.
+* Asistencia en el diseño de estructuras de datos necesarias para el simulador.
