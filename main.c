@@ -21,15 +21,13 @@ int main(void) {
         printf("[4] Ver Reporte de Desempeno Final\n");
         printf("[5] Salir del Sistema\n");
         printf("----------------------------------------\n");
-        printf("Seleccione una opcion: ");
         
-        scanf("%d", &opcion);
+        // 4. BLINDAJE DE SEGURIDAD 
+        opcion = leer_entero_seguro("Seleccione una opcion (1-5): ", 1, 5);
 
-        // 3. INTEGRACIÓN CON LOS MÓDULOS FÍSICOS 
         switch (opcion) {
             case 1:
                 printf("\n--- INICIANDO FASE 1 ---\n");
-                // Pasamos la dirección de memoria de la nave 
                 calcular_fase1(&nave); 
                 break;
             case 2:
@@ -42,15 +40,18 @@ int main(void) {
                 break;
             case 4:
                 printf("\n--- REPORTE FINAL DE MISION ---\n");
-                // Pasamos la variable directamente 
                 mostrar_reporte_final(nave); 
                 break;
             case 5:
                 printf("\n[SALIENDO] Finalizando el simulador de vuelo...\n");
                 break;
-            default:
-                printf("\n[ERROR] Opcion fuera de rango. Seleccione entre 1 y 5.\n");
         }
+
+        // Evita que el menú vuelva a aparecer instantáneamente y tape los resultados
+        if (opcion != 5) {
+            pausar_consola(); 
+        }
+
     } while (opcion != 5);
 
     return 0;
