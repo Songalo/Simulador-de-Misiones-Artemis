@@ -23,7 +23,7 @@ int main(void) {
         printf("----------------------------------------\n");
         
         // 4. BLINDAJE DE SEGURIDAD 
-        opcion = leer_entero_seguro("Seleccione una opcion (1-5): ", 1, 5);
+        opcion = leerEntero("Seleccione una opcion (1-5): ", 1, 5);
 
         switch (opcion) {
             case 1:
@@ -49,7 +49,7 @@ int main(void) {
 
         // Evita que el menú vuelva a aparecer instantáneamente y tape los resultados
         if (opcion != 5) {
-            pausar_consola(); 
+            pausarConsola(); 
         }
 
     } while (opcion != 5);
