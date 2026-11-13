@@ -3,7 +3,6 @@
 #include "validaciones.h" 
 
 int main(void) {
-    // 1. Declaración e inicialización estricta (Lo que hicimos en el commit 1)
     NaveArtemis nave;
     nave.tiempo_actual = 0.0;
     nave.altitud = 0.0;
@@ -12,7 +11,6 @@ int main(void) {
 
     int opcion;
 
-    // 2. Control de flujo: Bucle principal interactivo
     do {
         printf("\n========================================\n");
         printf("    SIMULADOR ARTEMIS - MISION SLS      \n");
@@ -25,22 +23,27 @@ int main(void) {
         printf("----------------------------------------\n");
         printf("Seleccione una opcion: ");
         
-        // Lectura estándar temporal (la blindaremos en el commit 4)
         scanf("%d", &opcion);
 
-        // 3. Enrutador lógico de opciones
+        // 3. INTEGRACIÓN CON LOS MÓDULOS FÍSICOS 
         switch (opcion) {
             case 1:
-                printf("\n[INFO] Opcion 1 en construccion...\n");
+                printf("\n--- INICIANDO FASE 1 ---\n");
+                // Pasamos la dirección de memoria de la nave 
+                calcular_fase1(&nave); 
                 break;
             case 2:
-                printf("\n[INFO] Opcion 2 en construccion...\n");
+                printf("\n--- INICIANDO FASE 2 ---\n");
+                calcular_fase2(&nave);
                 break;
             case 3:
-                printf("\n[INFO] Opcion 3 en construccion...\n");
+                printf("\n--- SIMULACION DE CAIDA LIBRE ---\n");
+                simular_caida_libre(&nave);
                 break;
             case 4:
-                printf("\n[INFO] Opcion 4 en construccion...\n");
+                printf("\n--- REPORTE FINAL DE MISION ---\n");
+                // Pasamos la variable directamente 
+                mostrar_reporte_final(nave); 
                 break;
             case 5:
                 printf("\n[SALIENDO] Finalizando el simulador de vuelo...\n");
