@@ -143,3 +143,26 @@ void simular_caida_libre(NaveArtemis *nave)
     printf("Altura maxima alcanzada: %.2f metros\n", altura_maxima);
     printf("Velocidad en el punto mas alto: %.2f m/s\n", nave->velocidad);
 }
+
+void mostrar_reporte_final(NaveArtemis nave) {
+    printf("\n==================================================\n"); 
+    printf("         INFORME DE DESEMPEÑO - MISIÓN SLS        \n");
+    printf("==================================================\n");
+    printf(" > Tiempo total de vuelo:    %.2f segundos\n", nave.tiempo_actual); 
+    printf(" > Altitud actual/alcanzada: %.2f metros\n", nave.altitud);
+    printf(" > Velocidad actual:         %.2f m/s\n", nave.velocidad);
+    printf(" > Aceleración registrada:   %.2f m/s^2\n", nave.aceleracion);
+
+    double g_tripulacion = nave.aceleracion / ACEL_GRAV;
+    printf(" > G-Force en tripulación:   %.2f g\n", g_tripulacion);
+
+    printf("--------------------------------------------------\n");
+    if (nave.altitud >= ALTURA_OBJETIVO) {
+        printf(" [ESTADO] Misión completada o fase orbital alcanzada.\n");
+    } else if (nave.altitud > 0) {
+        printf(" [ESTADO] Misión en curso (Fases intermedias).\n");
+    } else {
+        printf(" [ESTADO] La nave sigue en la plataforma de lanzamiento.\n");
+    }
+    printf("==================================================\n");
+}
