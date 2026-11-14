@@ -17,23 +17,22 @@ int leerEntero(const char *mensaje, int min, int max) {
                 buffer[len - 1] = '\0';
             }
             if (sscanf(buffer, " %d %c", &valor, &extra) == 2) {
-                printf("\n[Aviso amigable] Ingresaste varios valores. Solo necesitamos uno.\n\n");
+                printf("\n Ingresaste varios valores. Solo necesitamos uno.\n\n");
             } else
             if (sscanf(buffer, " %d %c", &valor, &extra) == 1) {
                 if (valor >= min && valor <= max) {
                     valido = 1;
                 } else {
-                    printf("\n[Aviso amigable] El valor está fuera del rango (%d a %d). Probá de nuevo.\n\n", min, max);
+                    printf("\n El valor está fuera del rango (%d a %d). Probá de nuevo.\n\n", min, max);
                 }
             } else {
-                printf("\n[Aviso amigable] ¡Cuidado! Ingresaste letras o caracteres no válidos. Necesitamos un número entero.\n\n");
+                printf("\n ¡Cuidado! Ingresaste letras o caracteres no válidos. Necesitamos un número entero.\n\n");
             }
         }
     } while (!valido);
 
     return valor;
 }
-
 
 
 
@@ -51,16 +50,16 @@ float leerFlotante(const char *mensaje, float min, float max) {
                 buffer[len - 1] = '\0';
             }
             if (sscanf(buffer, " %f %c", &valor, &extra) == 2) {
-                printf("\n[Aviso amigable] Ingresaste varios valores. Solo necesitamos uno.\n\n");
+                printf("\n Ingresaste varios valores. Solo necesitamos uno.\n\n");
             } else
             if (sscanf(buffer, " %f %c", &valor, &extra) == 1) {
                 if (valor >= min && valor <= max) {
                     valido = 1;
                 } else {
-                    printf("\n[Aviso amigable] Valor fuera del rango válido (%.2f a %.2f).\n\n", min, max);
+                    printf("\n Valor fuera del rango válido (%.2f a %.2f).\n\n", min, max);
                 }
             } else {
-                printf("\n[Aviso amigable] Ingresaste letras. Requerimos un número decimal válido.\n\n");
+                printf("\n Ingresaste letras. Requerimos un número decimal válido.\n\n");
             }
         }
     } while (!valido);
