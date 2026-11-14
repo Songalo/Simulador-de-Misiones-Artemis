@@ -23,7 +23,7 @@ El proyecto incluye un **Makefile** para automatizar el proceso de compilación 
 
 1. Clonar el repositorio y posicionarse en la carpeta raíz:
    ```bash
-   git clone [https://github.com/Songalo/Simulador-de-Misiones-Artemis.git](https://github.com/Songalo/Simulador-de-Misiones-Artemis.git)
+   git clone https://github.com/Songalo/Simulador-de-Misiones-Artemis.git
    cd Simulador-de-Misiones-Artemis
 2. Compilar el programa utilizando el Makefile. Para utilizarlo se debe ejecutar:
    ```bash
