@@ -44,7 +44,7 @@ Una vez seleccionada la configuración, se accede al menú de simulación, que p
 El sistema también incorpora validaciones de los datos ingresados para evitar valores incorrectos y mantener las condiciones necesarias para realizar los cálculos.
 
 
-## 4$. Instrucciones de Compilación y Ejecución
+## 4. Instrucciones de Compilación y Ejecución
 
 El proyecto incluye un **Makefile** para automatizar el proceso de compilación mediante el compilador `gcc`
 
