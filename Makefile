@@ -1,7 +1,7 @@
 # 1. Se define las variables.
 CC = gcc
 CFLAGS = -Wall -Wextra -std=c99
-TARGET = simulador_artemis
+TARGET = simulador_artemis.exe
 OBJS = main.c simulador.c validaciones.c
 
 # 2. Regla principal (se ejecuta al escribir solo "make")
@@ -13,4 +13,6 @@ $(TARGET): $(OBJS)
 
 # 4. Es una regla para limpiar archivos basura (al escribir "make clean")
 clean:
-	rm -f $(TARGET) *.o
+	-del /f /q $(TARGET)
+	-del /f /q *.o
+	-rm -f simulador_artemis $(TARGET) *.o
