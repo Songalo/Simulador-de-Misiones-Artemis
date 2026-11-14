@@ -25,13 +25,16 @@ El proyecto incluye un **Makefile** para automatizar el proceso de compilación 
    ```bash
    git clone https://github.com/Songalo/Simulador-de-Misiones-Artemis.git
    cd Simulador-de-Misiones-Artemis
-2. Compilar el programa utilizando el Makefile. Para utilizarlo se debe ejecutar:
+2. Instalar el componente necesario desde PowerShell para que Makefile funcione:
    ```bash
+   winget install ezwinports.make
+3. Compilar el programa utilizando el Makefile. Para utilizarlo se debe ejecutar:
+   ```PowerShell
    make
-3. Ejecutar el simulador generado.
+4. Ejecutar el simulador generado.
    ```bash
    simulador_artemis.exe
-4. Si se desea limpiar los archivos compilados se puede utilizar el comando:
+5. Si se desea limpiar los archivos compilados se puede utilizar el comando:
    ```bash
    make clean
 
