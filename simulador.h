@@ -8,6 +8,13 @@
 #define ACEL_FASE2 12.5         // m/s^2 (Aceleración del núcleo principal)
 #define ALTURA_OBJETIVO 160000.0 // m (160 km de altitud donde se apagan motores)
 
+// CONFIGURACION DE MISION PERSONALIZADA
+typedef struct {
+    double acel_fase1;
+    double acel_fase2;
+    double altura_objetivo;
+} ConfiguracionMision;
+
 // 2. DEFINICIÓN DE ESTRUCTURA PARA ORGANIZAR DATOS DE LA NAVE
 typedef struct {
     double tiempo_actual;   // Segundos transcurridos
@@ -19,11 +26,11 @@ typedef struct {
 // 3. PROTOTIPOS DE FUNCIONES
 
 // FUNCIONES DE LA PARTE FÍSICA
-void calcular_fase1(NaveArtemis *nave);
-void calcular_fase2(NaveArtemis *nave);
-void simular_caida_libre(NaveArtemis *nave);
+void calcular_fase1(NaveArtemis *nave, const ConfiguracionMision *config);
+void calcular_fase2(NaveArtemis *nave, const ConfiguracionMision *config);
+void simular_caida_libre(NaveArtemis *nave, const ConfiguracionMision *config);
 
-// FUNCIONES DE INTERFAZ Y REPORTES (ME ENCARGO YO AL FINAL)
-void mostrar_reporte_final(NaveArtemis nave);
+// FUNCIONES DE INTERFAZ Y REPORTES
+void mostrar_reporte_final(NaveArtemis nave, const ConfiguracionMision *config);
 
 #endif

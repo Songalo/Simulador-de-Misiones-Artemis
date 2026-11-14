@@ -3,16 +3,20 @@
 #include <math.h>
 #include "simulador.h"
 
-void calcular_fase1(NaveArtemis *nave)
+void calcular_fase1(NaveArtemis *nave, const ConfiguracionMision *config)
 {
-    if (nave == NULL) {
+    if (nave == NULL || config == NULL) {
+        return;
+    }
+    if (config->acel_fase1 <= 0.0) {
+        printf("Error: la aceleracion de la Fase 1 debe ser mayor que cero.\n");
         return;
     }
 
     nave->tiempo_actual = 0.0;
     nave->altitud = 0.0;
     nave->velocidad = 0.0;
-    nave->aceleracion = ACEL_FASE1;
+    nave->aceleracion = config->acel_fase1;
 
     double altitudes[121];
     double velocidades[121];
@@ -50,35 +54,45 @@ void calcular_fase1(NaveArtemis *nave)
 }
 
 
-void calcular_fase2(NaveArtemis *nave)
+void calcular_fase2(NaveArtemis *nave, const ConfiguracionMision *config)
 {
-    if (nave == NULL) {
+    if (nave == NULL || config == NULL) {
         return;
     }
-    if (nave->tiempo_actual < TIEMPO_SRB || nave->altitud <= 0.0) {
-    printf("Error: primero debe ejecutar la Fase 1.\n");
-    return;
-}
+    if (config->acel_fase2 <= 0.0) {
+        printf("Error: la aceleracion de la Fase 2 debe ser mayor que cero.\n");
+        return;
+    }
 
-if (nave->altitud >= ALTURA_OBJETIVO) {
-    printf("Error: la Fase 2 ya fue ejecutada.\n");
-    return;
-}
+    double altura_fase1 = 0.5 * config->acel_fase1 *
+                      TIEMPO_SRB * TIEMPO_SRB;
+
+    if (config->altura_objetivo <= altura_fase1) {
+        printf("Error: la altura objetivo debe superar la altura de la Fase 1.\n");
+        return;
+    }
+    
+    if (nave->tiempo_actual < TIEMPO_SRB ||
+        nave->altitud <= 0.0 ||
+        nave->velocidad <= 0.0) {
+        printf("Error: primero debe ejecutar la Fase 1.\n");
+        return;
+    }
+
+    if (nave->altitud >= config->altura_objetivo) {
+        printf("Error: la Fase 2 ya fue ejecutada.\n");
+        return;
+    }
 
     // Guardamos los valores iniciales de la segunda fase
     double velocidad_inicial = nave->velocidad;
     double altitud_inicial = nave->altitud;
 
     // Establecemos la aceleracion de la fase 2
-    nave->aceleracion = ACEL_FASE2;
+    nave->aceleracion = config->acel_fase2;
 
-    // Calculamos la distancia que falta para llegar a los 160.000 metros
-    double distancia = ALTURA_OBJETIVO - altitud_inicial;
-
-    if (distancia < 0) {
-        printf("Error: la nave ya supero la altura objetivo.\n");
-        return;
-    }
+    // Calculamos la distancia que falta para llegar a la altura objetivo
+    double distancia = config->altura_objetivo - altitud_inicial;
 
     // Calculamos la velocidad final utilizando MRUV
     double velocidad_final = sqrt(
@@ -92,7 +106,7 @@ if (nave->altitud >= ALTURA_OBJETIVO) {
 
     // Actualizamos los datos de la nave
     nave->tiempo_actual += tiempo_fase2;
-    nave->altitud = ALTURA_OBJETIVO;
+    nave->altitud = config->altura_objetivo;
     nave->velocidad = velocidad_final;
 
     printf("\n--- RESULTADOS DE LA SEGUNDA FASE ---\n");
@@ -104,15 +118,16 @@ if (nave->altitud >= ALTURA_OBJETIVO) {
 }
 
 
-void simular_caida_libre(NaveArtemis *nave)
+void simular_caida_libre(NaveArtemis *nave, const ConfiguracionMision *config)
 {
-    if (nave == NULL) {
+    if (nave == NULL || config == NULL) {
         return;
     }
-    if (nave->altitud != ALTURA_OBJETIVO || nave->velocidad <= 0.0) {
-    printf("Error: primero debe completar la Fase 2.\n");
-    return;
-}
+    if (fabs(nave->altitud - config->altura_objetivo) > 0.001 ||
+        nave->velocidad <= 0.0) {
+        printf("Error: primero debe completar la Fase 2.\n");
+        return;
+    }
 
     // Guardamos la velocidad y altitud al apagar los motores
     double velocidad_inicial = nave->velocidad;
@@ -144,7 +159,10 @@ void simular_caida_libre(NaveArtemis *nave)
     printf("Velocidad en el punto mas alto: %.2f m/s\n", nave->velocidad);
 }
 
-void mostrar_reporte_final(NaveArtemis nave) {
+void mostrar_reporte_final(NaveArtemis nave, const ConfiguracionMision *config) {
+    if (config == NULL) {
+        return;
+    }
     printf("\n==================================================\n"); 
     printf("         INFORME DE DESEMPEÑO - MISIÓN SLS        \n");
     printf("==================================================\n");
@@ -153,13 +171,13 @@ void mostrar_reporte_final(NaveArtemis nave) {
     printf(" > Velocidad actual:         %.2f m/s\n", nave.velocidad);
     printf(" > Aceleración registrada:   %.2f m/s^2\n", nave.aceleracion);
 
-    printf(" > Aceleracion maxima durante el ascenso: %.2f m/s^2\n", ACEL_FASE1);
+    printf(" > Aceleracion maxima durante el ascenso: %.2f m/s^2\n", config->acel_fase1);
 
-    double g_maximo = ACEL_FASE1 / ACEL_GRAV;
+    double g_maximo = config->acel_fase1 / ACEL_GRAV;
     printf(" > G-Force maxima de la tripulacion: %.2f g\n", g_maximo);
 
     printf("--------------------------------------------------\n");
-    if (nave.altitud >= ALTURA_OBJETIVO) {
+    if (nave.altitud >= config->altura_objetivo) {
         printf(" [ESTADO] Misión completada o fase orbital alcanzada.\n");
     } else if (nave.altitud > 0) {
         printf(" [ESTADO] Misión en curso (Fases intermedias).\n");
