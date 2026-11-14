@@ -153,8 +153,10 @@ void mostrar_reporte_final(NaveArtemis nave) {
     printf(" > Velocidad actual:         %.2f m/s\n", nave.velocidad);
     printf(" > Aceleración registrada:   %.2f m/s^2\n", nave.aceleracion);
 
-    double g_tripulacion = nave.aceleracion / ACEL_GRAV;
-    printf(" > G-Force en tripulación:   %.2f g\n", g_tripulacion);
+    printf(" > Aceleracion maxima durante el ascenso: %.2f m/s^2\n", ACEL_FASE1);
+
+    double g_maximo = ACEL_FASE1 / ACEL_GRAV;
+    printf(" > G-Force maxima de la tripulacion: %.2f g\n", g_maximo);
 
     printf("--------------------------------------------------\n");
     if (nave.altitud >= ALTURA_OBJETIVO) {
