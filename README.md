@@ -37,7 +37,16 @@ El proyecto incluye un **Makefile** para automatizar el proceso de compilación 
 
 ## 4. Uso de Inteligencia Artificial
 
-Durante el desarrollo del proyecto, la asistencia de la Inteligencia Artificial fue vital para:
-* Comprender la utilidad de los archivos de cabecera .h y como se utilizan.
-* Conocer la existencia del archivo Makefile, y su correcta configuración. Util para compilar de manera sencilla.
-* Asistencia en el diseño de estructuras de datos necesarias para el simulador.
+Durante el desarrollo del proyecto se utilizaron distintas herramientas de Inteligencia Artificial como apoyo para comprender conceptos, resolver dudas y facilitar distintas etapas del trabajo.
+
+Entre sus principales usos se encuentran:
+
+- Comprender la utilidad de los archivos de cabecera `.h` y cómo se utilizan dentro de la estructura del programa.
+- Recibir asistencia en el diseño de las estructuras de datos necesarias para el simulador.
+- Comprender el funcionamiento de las funciones y los fragmentos de código desarrollados por los integrantes, facilitando el intercambio de conocimientos dentro del grupo.
+- Consultar sobre la aplicación de fórmulas físicas y cálculos de MRUV, velocidad, altura y caída libre.
+- Recibir orientación para incorporar una opción de misión personalizada, manteniendo los valores originales de la misión oficial.
+- Obtener explicaciones sobre las validaciones de datos y las posibles pruebas para comprobar el funcionamiento del programa.
+- Recibir orientación sobre la función y configuración del Makefile, así como sobre el uso de GCC y los comandos necesarios para compilar y ejecutar el proyecto.
+
+Aclaración importante: Las respuestas, sugerencias y explicaciones proporcionadas por las herramientas utilizadas fueron tomadas como material de consulta y apoyo. Los integrantes revisaron la información antes de aplicarla, contrastaron los conceptos y cálculos con el material de estudio y realizaron pruebas para comprobar el correcto funcionamiento del programa.
