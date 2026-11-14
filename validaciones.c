@@ -7,6 +7,7 @@ int leerEntero(const char *mensaje, int min, int max) {
     char buffer[100];
     int valor;
     int valido = 0;
+    char extra;
 
     do {
         printf("%s", mensaje);
@@ -15,7 +16,10 @@ int leerEntero(const char *mensaje, int min, int max) {
             if (len > 0 && buffer[len - 1] == '\n') {
                 buffer[len - 1] = '\0';
             }
-            if (sscanf(buffer, "%d", &valor) == 1) {
+            if (sscanf(buffer, " %d %c", &valor, &extra) == 2) {
+                printf("\n[Aviso amigable] Ingresaste varios valores. Solo necesitamos uno.\n\n");
+            } else
+            if (sscanf(buffer, " %d %c", &valor, &extra) == 1) {
                 if (valor >= min && valor <= max) {
                     valido = 1;
                 } else {
@@ -37,6 +41,7 @@ float leerFlotante(const char *mensaje, float min, float max) {
     char buffer[100];
     float valor;
     int valido = 0;
+    char extra;
 
     do {
         printf("%s", mensaje);
@@ -45,7 +50,10 @@ float leerFlotante(const char *mensaje, float min, float max) {
             if (len > 0 && buffer[len - 1] == '\n') {
                 buffer[len - 1] = '\0';
             }
-            if (sscanf(buffer, "%f", &valor) == 1) {
+            if (sscanf(buffer, " %f %c", &valor, &extra) == 2) {
+                printf("\n[Aviso amigable] Ingresaste varios valores. Solo necesitamos uno.\n\n");
+            } else
+            if (sscanf(buffer, " %f %c", &valor, &extra) == 1) {
                 if (valor >= min && valor <= max) {
                     valido = 1;
                 } else {
