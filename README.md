@@ -1,5 +1,9 @@
 # 🚀 Simulador de Misiones Artemis - Situación 1: Ascenso y Propulsión con el SLS
 
+## Video de explicación en Youtube : https://www.youtube.com/watch?v=0j4-OfGHe0U
+
+--------------------------------------------------------------------------
+
 ## 1. Integrantes - Legajo y Comisión / Grupo
 * Colman, Fiorella Soledad - 30699
 * Tabernero, Francisco Ariel - 30155
